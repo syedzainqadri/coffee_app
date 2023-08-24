@@ -1,10 +1,10 @@
-import 'package:coffee_app/widgets/treats_list.widget.dart';
+import 'package:teachers_app/widgets/timeslot_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors_constants.dart';
 import '../config/services_locator.dart';
-import '../models/coffee_item.model.dart';
+import '../models/teacher_item_model.dart';
 import '../services/navigation.service.dart';
 
 class SweetTreatsWidget extends StatefulWidget {
@@ -99,8 +99,8 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
               begin: Alignment.bottomRight,
               stops: const [0.0, .50],
               colors: [
-                kBrownColor.withOpacity(.7),
-                kBrownColor.withOpacity(0.0)
+                kYellowColor.withOpacity(.7),
+                kYellowColor.withOpacity(0.0)
               ],
             ),
           )),
@@ -114,8 +114,8 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
               end: Alignment.bottomLeft,
               stops: const [0.0, .4],
               colors: [
-                kBrownColor.withOpacity(.5),
-                kBrownColor.withOpacity(0.0)
+                kYellowColor.withOpacity(.5),
+                kYellowColor.withOpacity(0.0)
               ],
             ),
           )),
