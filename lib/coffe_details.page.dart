@@ -7,15 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'config/colors_constants.dart';
 import 'models/coffee_item.model.dart';
 
-class CoffeeDetailsPage extends StatefulWidget {
-  final CoffeeItem coffee;
-  const CoffeeDetailsPage({super.key, required this.coffee});
+class TeacherDetailsPage extends StatefulWidget {
+  final TeacherItem teacher;
+  const TeacherDetailsPage({super.key, required this.teacher});
 
   @override
-  State<CoffeeDetailsPage> createState() => _CoffeeDetailsPageState();
+  State<TeacherDetailsPage> createState() => _TeacherDetailsPageState();
 }
 
-class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
+class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
   late String sizeCoffee;
 
   @override
@@ -44,7 +44,7 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: Alignment.center + Alignment(-.9, -0.0),
+                alignment: Alignment.center + const Alignment(-.9, -0.0),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 0, bottom: 32),
                   child: SizedBox(
@@ -52,15 +52,19 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: kTitleColor,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 15),
                           alignment: Alignment.centerLeft,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                         onPressed: () {
-                          locator<NavigationService>().navigateTo(NavigationArguments(
-                              coffee: CoffeeItem.mockItems.indexOf(widget.coffee), isSweetTreats: true));
+                          locator<NavigationService>().navigateTo(
+                              NavigationArguments(
+                                  teacher: TeacherItem.mockItems
+                                      .indexOf(widget.teacher),
+                                  isSweetTreats: true));
                         },
                         child: Row(
                           children: [
@@ -124,13 +128,19 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
                                 });
                               },
                               child: Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 4),
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: sizeCoffee == sizeCoffe ? kTitleColor : Colors.transparent,
+                                  color: sizeCoffee == sizeCoffe
+                                      ? kTitleColor
+                                      : Colors.transparent,
                                   border: Border.all(
-                                    color: sizeCoffee != sizeCoffe ? kTitleColor : Colors.transparent,
+                                    color: sizeCoffee != sizeCoffe
+                                        ? kTitleColor
+                                        : Colors.transparent,
                                     width: 2,
                                   ),
                                 ),
@@ -139,7 +149,9 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
                                   style: GoogleFonts.questrial(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
-                                    color: sizeCoffee != sizeCoffe ? kTitleColor : Colors.white,
+                                    color: sizeCoffee != sizeCoffe
+                                        ? kTitleColor
+                                        : Colors.white,
                                   ),
                                   child: Text(
                                     sizeCoffe,
@@ -154,12 +166,12 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                    "${(widget.coffee.price + (sizeCoffee == "M" ? 0 : (sizeCoffee == "L" ? 1.2 : -.8))).toStringAsFixed(2)}€",
+                    "${(widget.teacher.price + (sizeCoffee == "M" ? 0 : (sizeCoffee == "L" ? 1.2 : -.8))).toStringAsFixed(2)}€",
                     style: titleStyle),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                widget.coffee.description,
+                widget.teacher.description,
                 textAlign: TextAlign.left,
                 style: GoogleFonts.questrial(
                   fontSize: 18,
@@ -168,15 +180,15 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
                   color: kTitleColor.withOpacity(0.5),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SizedBox(
                 width: size.width * 0.6,
                 child: Hero(
-                    tag: "coffee_${widget.coffee.id}_name",
+                    tag: "coffee_${widget.teacher.id}_name",
                     child: Text(
-                      widget.coffee.name,
+                      widget.teacher.name,
                       style: titleStyle,
                       textAlign: TextAlign.left,
                     )),
@@ -193,7 +205,7 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
         child: IgnorePointer(
           ignoring: true,
           child: Hero(
-            tag: "coffee_${widget.coffee.id}",
+            tag: "coffee_${widget.teacher.id}",
             child: AnimatedScale(
               duration: const Duration(milliseconds: 400),
               scale: sizeCoffee == 'M'
@@ -204,7 +216,7 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
               curve: Curves.easeOutBack,
               alignment: Alignment.center,
               child: Image.asset(
-                widget.coffee.image,
+                widget.teacher.image,
                 fit: BoxFit.contain,
               ),
             ),
@@ -224,8 +236,11 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
             gradient: LinearGradient(
               end: Alignment.topRight,
               begin: Alignment.bottomLeft,
-              stops: [0.0, .50],
-              colors: [kBrownColor.withOpacity(.7), kBrownColor.withOpacity(0.0)],
+              stops: const [0.0, .50],
+              colors: [
+                kBrownColor.withOpacity(.7),
+                kBrownColor.withOpacity(0.0)
+              ],
             ),
           )),
         ),
@@ -236,8 +251,11 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              stops: [0.0, .4],
-              colors: [kBrownColor.withOpacity(.5), kBrownColor.withOpacity(0.0)],
+              stops: const [0.0, .4],
+              colors: [
+                kBrownColor.withOpacity(.5),
+                kBrownColor.withOpacity(0.0)
+              ],
             ),
           )),
         ),

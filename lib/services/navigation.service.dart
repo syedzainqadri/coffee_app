@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class NavigationArguments {
-  final int coffee;
+  final int teacher;
   final int? treat;
   final bool isSweetTreats;
   final bool isCheckout;
   NavigationArguments(
-      {required this.coffee, this.treat, this.isSweetTreats = false, this.isCheckout = false});
+      {required this.teacher,
+      this.treat,
+      this.isSweetTreats = false,
+      this.isCheckout = false});
 }
 
 class NavigationService {

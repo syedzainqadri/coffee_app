@@ -24,7 +24,7 @@ class IntroWidget extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0, .3, 0.4],
+            stops: const [0, .3, 0.4],
             colors: [Colors.white, kBrownColor, Colors.white.withOpacity(0.8)],
           ),
         ),
@@ -40,16 +40,16 @@ class IntroWidget extends StatelessWidget {
                 ..translate(10.0, translate)
                 ..scale(scale),
               child: Hero(
-                tag: "coffee_${CoffeeItem.mockItems[index].id}",
+                tag: "coffee_${TeacherItem.mockItems[index].id}",
                 child: Image.asset(
-                  CoffeeItem.mockItems[index].image,
+                  TeacherItem.mockItems[index].image,
                   fit: BoxFit.contain,
                 ),
               ),
             );
           }).toList(),
           Align(
-            alignment: Alignment.center + Alignment(0, 0.25),
+            alignment: Alignment.center + const Alignment(0, 0.25),
             child: Stack(
               clipBehavior: Clip.none,
               children: [

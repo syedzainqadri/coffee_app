@@ -1,4 +1,3 @@
-import 'package:coffee_app/config/colors_constants.dart';
 import 'package:coffee_app/config/services_locator.dart';
 import 'package:coffee_app/models/coffee_item.model.dart';
 import 'package:coffee_app/models/treat_item.model.dart';
@@ -10,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import 'coffe_details.page.dart';
-import 'widgets/coffee_list.widget.dart';
+import 'widgets/teacher_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,7 +57,8 @@ class _HomePageState extends State<HomePage> {
                   key: locator.get<NavigationService>().navigatorKey,
                   observers: [locator.get<NavigationService>().heroController],
                   onGenerateRoute: (settings) {
-                    NavigationArguments? args = settings.arguments as NavigationArguments?;
+                    NavigationArguments? args =
+                        settings.arguments as NavigationArguments?;
                     late Widget currentPage;
                     bool toHome = false;
 
@@ -66,28 +66,35 @@ class _HomePageState extends State<HomePage> {
                       if (settings.name == 'home') {
                         toHome = true;
                       }
-                      currentPage = settings.name == 'home' ? const CofeeListWidget() : const IntroWidget();
+                      currentPage = settings.name == 'home'
+                          ? const TeachersListWidget()
+                          : const IntroWidget();
                     } else {
-                      currentPage = CoffeeDetailsPage(
-                        coffee: CoffeeItem.mockItems[args.coffee],
+                      currentPage = TeacherDetailsPage(
+                        teacher: TeacherItem.mockItems[args.teacher],
                       );
                       if (args.isSweetTreats) {
-                        currentPage = SweetTreatsWidget(coffee: CoffeeItem.mockItems[args.coffee]);
+                        currentPage = SweetTreatsWidget(
+                            teacher: TeacherItem.mockItems[args.teacher]);
                       }
                       if (args.isCheckout) {
                         currentPage = CheckoutWidget(
-                          coffee: CoffeeItem.mockItems[args.coffee],
-                          treat: args.treat != null ? TreatItem.mockItems[args.treat!] : null,
+                          teacher: TeacherItem.mockItems[args.teacher],
+                          treat: args.treat != null
+                              ? TreatItem.mockItems[args.treat!]
+                              : null,
                         );
                       }
                     }
 
                     return PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: toHome ? 800 : 300),
+                        transitionDuration:
+                            Duration(milliseconds: toHome ? 800 : 300),
                         pageBuilder: (context, animation, secondaryAnimation) {
                           return FadeTransition(
                             opacity: animation,
-                            child: Container(color: Colors.white, child: currentPage),
+                            child: Container(
+                                color: Colors.white, child: currentPage),
                           );
                         });
                   }),

@@ -8,8 +8,8 @@ import '../models/coffee_item.model.dart';
 import '../services/navigation.service.dart';
 
 class SweetTreatsWidget extends StatefulWidget {
-  final CoffeeItem coffee;
-  const SweetTreatsWidget({super.key, required this.coffee});
+  final TeacherItem teacher;
+  const SweetTreatsWidget({super.key, required this.teacher});
 
   @override
   State<SweetTreatsWidget> createState() => _SweetTreatsWidgetState();
@@ -28,7 +28,7 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
     return Stack(
       children: [
         _buildBackground(),
-        TreatsListWidget(coffee: widget.coffee),
+        TreatsListWidget(teacher: widget.teacher),
         Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -42,9 +42,9 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Hero(
-                            tag: "coffee_${widget.coffee.id}_name",
+                            tag: "coffee_${widget.teacher.id}_name",
                             child: Text(
-                              widget.coffee.name,
+                              widget.teacher.name,
                               style: titleStyle,
                               textAlign: TextAlign.right,
                             )),
@@ -61,17 +61,22 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: kTitleColor,
-                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 15),
                                   alignment: Alignment.centerLeft,
                                   shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
                                   ),
                                 ),
                                 onPressed: () {
-                                  locator<NavigationService>().navigateTo(NavigationArguments(
-                                      coffee: CoffeeItem.mockItems.indexOf(widget.coffee), isCheckout: true));
+                                  locator<NavigationService>().navigateTo(
+                                      NavigationArguments(
+                                          teacher: TeacherItem.mockItems
+                                              .indexOf(widget.teacher),
+                                          isCheckout: true));
                                 },
-                                child: Text("No, thanks!"))),
+                                child: const Text("No, thanks!"))),
                       ],
                     ),
                   ),
@@ -92,8 +97,11 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
             gradient: LinearGradient(
               end: Alignment.topLeft,
               begin: Alignment.bottomRight,
-              stops: [0.0, .50],
-              colors: [kBrownColor.withOpacity(.7), kBrownColor.withOpacity(0.0)],
+              stops: const [0.0, .50],
+              colors: [
+                kBrownColor.withOpacity(.7),
+                kBrownColor.withOpacity(0.0)
+              ],
             ),
           )),
         ),
@@ -104,8 +112,11 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              stops: [0.0, .4],
-              colors: [kBrownColor.withOpacity(.5), kBrownColor.withOpacity(0.0)],
+              stops: const [0.0, .4],
+              colors: [
+                kBrownColor.withOpacity(.5),
+                kBrownColor.withOpacity(0.0)
+              ],
             ),
           )),
         ),

@@ -9,9 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../config/colors_constants.dart';
 
 class CheckoutWidget extends StatelessWidget {
-  final CoffeeItem coffee;
+  final TeacherItem teacher;
   final TreatItem? treat;
-  const CheckoutWidget({super.key, required this.coffee, this.treat});
+  const CheckoutWidget({super.key, required this.teacher, this.treat});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,15 @@ class CheckoutWidget extends StatelessWidget {
       children: [
         _buildBackground(),
         Hero(
-          tag: "coffee_${coffee.id}",
+          tag: "coffee_${teacher.id}",
           child: Image.asset(
-            coffee.image,
+            teacher.image,
             fit: BoxFit.contain,
           ),
         ),
         if (treat != null)
           Align(
-            alignment: Alignment(2, 0.5),
+            alignment: const Alignment(2, 0.5),
             child: SizedBox(
               width: size.width * 0.8,
               child: Hero(
@@ -50,20 +50,23 @@ class CheckoutWidget extends StatelessWidget {
               children: [
                 Text("My Order",
                     style: GoogleFonts.montserrat(
-                        fontSize: 30, fontWeight: FontWeight.w700, height: 1, color: kTitleColor)),
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                        height: 1,
+                        color: kTitleColor)),
                 const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(coffee.name,
+                      child: Text(teacher.name,
                           style: GoogleFonts.questrial(
                               fontSize: 18,
                               letterSpacing: 1,
                               fontWeight: FontWeight.w500,
                               color: kTitleColor)),
                     ),
-                    Text("${coffee.price}€",
+                    Text("${teacher.price}€",
                         style: GoogleFonts.questrial(
                             fontSize: 18,
                             letterSpacing: 1,
@@ -94,17 +97,18 @@ class CheckoutWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: kTitleColor,
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    backgroundColor: kTitleColor,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                   onPressed: () {},
-                  child: Text("Checkout (${(coffee.price + (treat?.price ?? 0)).toStringAsFixed(2)}€)"),
+                  child: Text(
+                      "Checkout (${(teacher.price + (treat?.price ?? 0)).toStringAsFixed(2)}€)"),
                 )
               ],
             ),
@@ -125,7 +129,7 @@ _buildBackground() {
           gradient: LinearGradient(
             end: Alignment.topCenter,
             begin: Alignment.bottomCenter,
-            stops: [0.0, .50],
+            stops: const [0.0, .50],
             colors: [kBrownColor.withOpacity(.7), kBrownColor.withOpacity(0.0)],
           ),
         )),
@@ -137,7 +141,7 @@ _buildBackground() {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0.0, .4],
+            stops: const [0.0, .4],
             colors: [kBrownColor.withOpacity(.5), kBrownColor.withOpacity(0.0)],
           ),
         )),

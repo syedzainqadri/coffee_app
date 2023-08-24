@@ -10,8 +10,8 @@ import '../config/services_locator.dart';
 import '../services/navigation.service.dart';
 
 class TreatsListWidget extends StatefulWidget {
-  final CoffeeItem coffee;
-  const TreatsListWidget({super.key, required this.coffee});
+  final TeacherItem teacher;
+  const TreatsListWidget({super.key, required this.teacher});
 
   @override
   State<TreatsListWidget> createState() => TreatsListWidgetState();
@@ -30,7 +30,8 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
       if (_currentPosition.round() != _currentHeading) {
         _currentHeading = _currentPosition.round();
         _headingController.animateToPage(_currentHeading,
-            duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut);
       }
     });
   }
@@ -109,11 +110,11 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
           width: size.width,
           height: size.height * 0.7,
           child: Hero(
-            tag: "coffee_${widget.coffee.id}",
+            tag: "coffee_${widget.teacher.id}",
             child: Transform.scale(
               scale: 1.36,
               child: Image.asset(
-                widget.coffee.image,
+                widget.teacher.image,
                 fit: BoxFit.contain,
               ),
             ),
@@ -125,7 +126,10 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
             child: Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Text(
-                TreatItem.mockItems[_currentHeading.clamp(0, TreatItem.mockItems.length - 1)].colories,
+                TreatItem
+                    .mockItems[_currentHeading.clamp(
+                        0, TreatItem.mockItems.length - 1)]
+                    .colories,
                 style: GoogleFonts.montserrat(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
@@ -154,10 +158,13 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
                 final double distance = (_currentPosition - index + 1).abs();
                 final isNotOnScreen = (_currentPosition - index + 1) > 0;
                 final double scale = 1 - distance * .38;
-                final double translateY = (1 - scale).abs() * MediaQuery.of(context).size.height / 1.5 +
+                final double translateY = (1 - scale).abs() *
+                        MediaQuery.of(context).size.height /
+                        1.5 +
                     25 * (distance - 1).clamp(0.0, 1);
                 return Padding(
-                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .1),
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * .1),
                   child: Transform(
                     transform: Matrix4.identity()
                       ..setEntry(3, 2, 0.001)
@@ -182,9 +189,10 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
               onPressed: () {
                 locator<NavigationService>().navigateTo(
                   NavigationArguments(
-                    coffee: CoffeeItem.mockItems.indexOf(widget.coffee),
-                    treat: TreatItem.mockItems.indexOf(
-                        TreatItem.mockItems[_currentHeading.clamp(0, TreatItem.mockItems.length - 1)]),
+                    teacher: TeacherItem.mockItems.indexOf(widget.teacher),
+                    treat: TreatItem.mockItems.indexOf(TreatItem.mockItems[
+                        _currentHeading.clamp(
+                            0, TreatItem.mockItems.length - 1)]),
                     isCheckout: true,
                   ),
                 );
