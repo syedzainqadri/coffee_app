@@ -1,13 +1,13 @@
 import 'package:teachers_app/config/scroll_config.dart';
 import 'package:teachers_app/models/teacher_item_model.dart';
-import 'package:teachers_app/models/treat_item.model.dart';
+import 'package:teachers_app/models/treat_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors_constants.dart';
 import '../config/services_locator.dart';
-import '../services/navigation.service.dart';
+import '../services/navigation_service.dart';
 
 class TreatsListWidget extends StatefulWidget {
   final TeacherItem teacher;
@@ -62,35 +62,35 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
           alignment: Alignment.bottomCenter + const Alignment(0, -1.2),
           child: IntrinsicHeight(
             child: Column(children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Text(
-                    "${TreatItem.mockItems[_currentHeading.clamp(0, TreatItem.mockItems.length - 1)].price.toStringAsFixed(2)}€",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: kTitleColor,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.bottomRight,
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(right: 20),
+              //     child: Text(
+              //       "${TimeSlot.mockItems[_currentHeading.clamp(0, TimeSlot.mockItems.length - 1)].price.toStringAsFixed(2)}€",
+              //       style: GoogleFonts.montserrat(
+              //         fontSize: 28,
+              //         fontWeight: FontWeight.w700,
+              //         height: 1,
+              //         color: kTitleColor,
+              //       ),
+              //       textAlign: TextAlign.right,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 15),
               SizedBox(
                 height: 80,
                 child: PageView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: _headingController,
-                    itemCount: TreatItem.mockItems.length,
+                    itemCount: TimeSlot.mockItems.length + 1,
                     scrollBehavior: WindowsScrollBehaviour(),
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 220, right: 20),
                         child: Text(
-                          TreatItem.mockItems[index].name,
+                          TimeSlot.mockItems[index - 1].name,
                           textAlign: TextAlign.right,
                           style: GoogleFonts.montserrat(
                             fontSize: 24,
@@ -120,79 +120,88 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Text(
-                TreatItem
-                    .mockItems[_currentHeading.clamp(
-                        0, TreatItem.mockItems.length - 1)]
-                    .colories,
-                style: GoogleFonts.montserrat(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  height: 1,
-                  color: kTitleColor.withOpacity(.5),
-                ),
-                textAlign: TextAlign.right,
-              ),
+        // Align(
+        //   alignment: Alignment.bottomRight,
+        //   child: SafeArea(
+        //     child: Padding(
+        //       padding: const EdgeInsets.only(right: 20),
+        //       child: Text(
+        //         TimeSlot
+        //             .mockItems[
+        //                 _currentHeading.clamp(0, TimeSlot.mockItems.length - 1)]
+        //             .colories,
+        //         style: GoogleFonts.montserrat(
+        //           fontSize: 20,
+        //           fontWeight: FontWeight.w400,
+        //           height: 1,
+        //           color: kTitleColor.withOpacity(.5),
+        //         ),
+        //         textAlign: TextAlign.right,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Transform.scale(
+              alignment: Alignment.bottomRight,
+              scale: 2.0,
+              child: PageView.builder(
+                  controller: _treatsController,
+                  scrollDirection: Axis.vertical,
+                  itemCount: TimeSlot.mockItems.length + 1,
+                  scrollBehavior: WindowsScrollBehaviour(),
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      // HEADINGS HERE Would be great
+                      return const SizedBox.shrink();
+                    }
+                    // we need to know how much index is far from the current page to scale it
+                    final double distance =
+                        (_currentPosition - index + 1).abs();
+                    final isNotOnScreen = (_currentPosition - index + 1) > 0;
+                    final double scale = 1 - distance * .38;
+                    final double translateY = (1 - scale).abs() *
+                            MediaQuery.of(context).size.height /
+                            2 +
+                        25 * (distance - 1).clamp(0.0, 1);
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height * .1),
+                      child: Transform(
+                        transform: Matrix4.identity()
+                          ..setEntry(2, 1, 0.001)
+                          ..translate(0.0, !isNotOnScreen ? 1.5 : translateY)
+                          ..scale(!isNotOnScreen ? .5 : scale),
+                        alignment: Alignment.bottomRight,
+                        child: Hero(
+                          tag: "time_${TimeSlot.mockItems[index - 1].id}",
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text(
+                              TimeSlot.mockItems[index - 1].time,
+                              // fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
             ),
           ),
         ),
-        Transform.scale(
-          alignment: Alignment.bottomCenter,
-          scale: 2.0,
-          child: PageView.builder(
-              controller: _treatsController,
-              scrollDirection: Axis.vertical,
-              itemCount: TreatItem.mockItems.length + 1,
-              scrollBehavior: WindowsScrollBehaviour(),
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  // HEADINGS HERE Would be great
-                  return const SizedBox.shrink();
-                }
-                // we need to know how much index is far from the current page to scale it
-                final double distance = (_currentPosition - index + 1).abs();
-                final isNotOnScreen = (_currentPosition - index + 1) > 0;
-                final double scale = 1 - distance * .38;
-                final double translateY = (1 - scale).abs() *
-                        MediaQuery.of(context).size.height /
-                        1.5 +
-                    25 * (distance - 1).clamp(0.0, 1);
-                return Padding(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).size.height * .1),
-                  child: Transform(
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
-                      ..translate(0.0, !isNotOnScreen ? 0.0 : translateY)
-                      ..scale(!isNotOnScreen ? 1.0 : scale),
-                    alignment: Alignment.bottomRight,
-                    child: Hero(
-                      tag: "treat_${TreatItem.mockItems[index - 1].id}",
-                      child: Image.asset(
-                        TreatItem.mockItems[index - 1].image,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  ),
-                );
-              }),
-        ),
         Positioned(
             right: 60,
-            bottom: size.height * 0.25,
+            bottom: size.height * 0.15,
             child: ElevatedButton(
               onPressed: () {
                 locator<NavigationService>().navigateTo(
                   NavigationArguments(
                     teacher: TeacherItem.mockItems.indexOf(widget.teacher),
-                    treat: TreatItem.mockItems.indexOf(TreatItem.mockItems[
+                    treat: TimeSlot.mockItems.indexOf(TimeSlot.mockItems[
                         _currentHeading.clamp(
-                            0, TreatItem.mockItems.length - 1)]),
+                            0, TimeSlot.mockItems.length - 1)]),
                     isCheckout: true,
                   ),
                 );

@@ -1,7 +1,7 @@
 import 'package:teachers_app/config/colors_constants.dart';
 import 'package:teachers_app/config/services_locator.dart';
 import 'package:teachers_app/models/teacher_item_model.dart';
-import 'package:teachers_app/services/navigation.service.dart';
+import 'package:teachers_app/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

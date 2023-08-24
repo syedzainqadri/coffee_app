@@ -1,5 +1,5 @@
 import 'package:teachers_app/config/services_locator.dart';
-import 'package:teachers_app/services/navigation.service.dart';
+import 'package:teachers_app/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -166,7 +166,7 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                    "${(widget.teacher.price + (sizeteacher == "30 min" ? 0 : (sizeteacher == "60 min" ? 1.2 : -.8))).toStringAsFixed(2)}\$ / hr",
+                    "${(widget.teacher.price + (sizeteacher == "1 h" ? 0 : (sizeteacher == "2 h" ? 1.2 : -.8))).toStringAsFixed(2)}\$ / hr",
                     style: titleStyle),
               ),
               const Spacer(),

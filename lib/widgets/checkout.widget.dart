@@ -1,5 +1,5 @@
 import 'package:teachers_app/models/teacher_item_model.dart';
-import 'package:teachers_app/models/treat_item.model.dart';
+import 'package:teachers_app/models/treat_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +7,7 @@ import '../config/colors_constants.dart';
 
 class CheckoutWidget extends StatelessWidget {
   final TeacherItem teacher;
-  final TreatItem? treat;
+  final TimeSlot? treat;
   const CheckoutWidget({super.key, required this.teacher, this.treat});
 
   @override
@@ -18,7 +18,7 @@ class CheckoutWidget extends StatelessWidget {
       children: [
         _buildBackground(),
         Hero(
-          tag: "coffee_${teacher.id}",
+          tag: "teacher_${teacher.id}",
           child: Image.asset(
             teacher.image,
             fit: BoxFit.contain,
@@ -30,10 +30,9 @@ class CheckoutWidget extends StatelessWidget {
             child: SizedBox(
               width: size.width * 0.8,
               child: Hero(
-                tag: "treat_${treat!.id}",
-                child: Image.asset(
-                  treat!.image,
-                  fit: BoxFit.contain,
+                tag: "time_${treat!.id}",
+                child: Text(
+                  treat!.time,
                 ),
               ),
             ),
@@ -45,7 +44,7 @@ class CheckoutWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text("My Order",
+                Text("My Booking",
                     style: GoogleFonts.montserrat(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
@@ -85,7 +84,7 @@ class CheckoutWidget extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: kTitleColor)),
                         ),
-                        Text("${treat!.price}€",
+                        Text(treat!.time,
                             style: GoogleFonts.questrial(
                                 fontSize: 18,
                                 letterSpacing: 1,
@@ -104,8 +103,8 @@ class CheckoutWidget extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: Text(
-                      "Checkout (${(teacher.price + (treat?.price ?? 0)).toStringAsFixed(2)}€)"),
+                  child:
+                      Text("Book Now (${teacher.price} \$ at ${treat!.time})"),
                 )
               ],
             ),

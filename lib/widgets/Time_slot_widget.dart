@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors_constants.dart';
-import '../config/services_locator.dart';
 import '../models/teacher_item_model.dart';
-import '../services/navigation.service.dart';
 
 class SweetTreatsWidget extends StatefulWidget {
   final TeacherItem teacher;
@@ -49,34 +47,34 @@ class _SweetTreatsWidgetState extends State<SweetTreatsWidget> {
                               textAlign: TextAlign.right,
                             )),
                         const SizedBox(height: 30),
-                        Text("Would you like to add some sweet treats?",
+                        Text("Please select a Time Slot",
                             textAlign: TextAlign.right,
                             style: GoogleFonts.questrial(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w100,
                                 color: kTitleColor.withOpacity(.5))),
                         const SizedBox(height: 15),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: kTitleColor,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 15),
-                                  alignment: Alignment.centerLeft,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  locator<NavigationService>().navigateTo(
-                                      NavigationArguments(
-                                          teacher: TeacherItem.mockItems
-                                              .indexOf(widget.teacher),
-                                          isCheckout: true));
-                                },
-                                child: const Text("No, thanks!"))),
+                        // Align(
+                        //     alignment: Alignment.centerRight,
+                        //     child: ElevatedButton(
+                        //         style: ElevatedButton.styleFrom(
+                        //           backgroundColor: kTitleColor,
+                        //           padding: const EdgeInsets.symmetric(
+                        //               horizontal: 16, vertical: 15),
+                        //           alignment: Alignment.centerLeft,
+                        //           shape: const RoundedRectangleBorder(
+                        //             borderRadius:
+                        //                 BorderRadius.all(Radius.circular(10)),
+                        //           ),
+                        //         ),
+                        //         onPressed: () {
+                        //           locator<NavigationService>().navigateTo(
+                        //               NavigationArguments(
+                        //                   teacher: TeacherItem.mockItems
+                        //                       .indexOf(widget.teacher),
+                        //                   isCheckout: true));
+                        //         },
+                        //         child: const Text("No, thanks!"))),
                       ],
                     ),
                   ),

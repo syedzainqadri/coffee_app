@@ -1,10 +1,10 @@
 import 'package:teachers_app/config/services_locator.dart';
 import 'package:teachers_app/models/teacher_item_model.dart';
-import 'package:teachers_app/models/treat_item.model.dart';
-import 'package:teachers_app/services/navigation.service.dart';
+import 'package:teachers_app/models/treat_item_model.dart';
+import 'package:teachers_app/services/navigation_service.dart';
 import 'package:teachers_app/widgets/checkout.widget.dart';
-import 'package:teachers_app/widgets/intro.widget.dart';
-import 'package:teachers_app/widgets/sweet_treats.widget.dart';
+import 'package:teachers_app/widgets/intro_widget.dart';
+import 'package:teachers_app/widgets/Time_slot_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                         currentPage = CheckoutWidget(
                           teacher: TeacherItem.mockItems[args.teacher],
                           treat: args.treat != null
-                              ? TreatItem.mockItems[args.treat!]
+                              ? TimeSlot.mockItems[args.treat!]
                               : null,
                         );
                       }

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors_constants.dart';
 import '../config/scroll_config.dart';
-import '../services/navigation.service.dart';
+import '../services/navigation_service.dart';
 
 class TeachersListWidget extends StatefulWidget {
   const TeachersListWidget({super.key});
