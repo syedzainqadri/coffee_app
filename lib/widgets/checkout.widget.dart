@@ -1,9 +1,6 @@
-import 'package:coffee_app/models/coffee_item.model.dart';
-import 'package:coffee_app/models/treat_item.model.dart';
+import 'package:teachers_app/models/teacher_item_model.dart';
+import 'package:teachers_app/models/treat_item.model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors_constants.dart';
@@ -130,7 +127,10 @@ _buildBackground() {
             end: Alignment.topCenter,
             begin: Alignment.bottomCenter,
             stops: const [0.0, .50],
-            colors: [kBrownColor.withOpacity(.7), kBrownColor.withOpacity(0.0)],
+            colors: [
+              kYellowColor.withOpacity(.7),
+              kYellowColor.withOpacity(0.0)
+            ],
           ),
         )),
       ),
@@ -142,7 +142,10 @@ _buildBackground() {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: const [0.0, .4],
-            colors: [kBrownColor.withOpacity(.5), kBrownColor.withOpacity(0.0)],
+            colors: [
+              kYellowColor.withOpacity(.5),
+              kYellowColor.withOpacity(0.0)
+            ],
           ),
         )),
       ),

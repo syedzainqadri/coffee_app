@@ -1,5 +1,5 @@
-import 'package:coffee_app/config/services_locator.dart';
-import 'package:coffee_app/models/coffee_item.model.dart';
+import 'package:teachers_app/config/services_locator.dart';
+import 'package:teachers_app/models/teacher_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -111,7 +111,7 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
                           }
                           return hero;
                         },
-                        tag: "coffee_${TeacherItem.mockItems[index - 1].id}",
+                        tag: "teacher_${TeacherItem.mockItems[index - 1].id}",
                         child: Image.asset(
                           TeacherItem.mockItems[index - 1].image,
                           fit: BoxFit.fitHeight,
@@ -158,7 +158,7 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
                           padding: const EdgeInsets.symmetric(horizontal: 80),
                           child: Center(
                             child: Hero(
-                              tag: "coffee_${item.id}_name",
+                              tag: "teacher_${item.id}_name",
                               child: Text(
                                 item.name,
                                 style: titleStyle,
@@ -175,7 +175,22 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
                   child: Text(
-                    "${TeacherItem.mockItems[_currentHeading.clamp(0, TeacherItem.mockItems.length - 1)].price.toStringAsFixed(2)}€",
+                    "${TeacherItem.mockItems[_currentHeading.clamp(0, TeacherItem.mockItems.length - 1)].price.toStringAsFixed(2)} \$ / hrs.",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500,
+                      height: 1,
+                      color: kTitleColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: Text(
+                    "${TeacherItem.mockItems[_currentHeading.clamp(0, TeacherItem.mockItems.length - 1)].subject}.",
                     style: GoogleFonts.montserrat(
                       fontSize: 28,
                       fontWeight: FontWeight.w500,
@@ -200,7 +215,7 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
           height: MediaQuery.of(context).size.width * .5,
           decoration: const BoxDecoration(boxShadow: [
             BoxShadow(
-              color: kBrownColor,
+              color: kYellowColor,
               blurRadius: 90,
               spreadRadius: 90,
               offset: Offset.zero,
@@ -214,10 +229,10 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
           width: 60,
           height: 200,
           decoration: const BoxDecoration(
-            // color: kBrownColor,
+            // color: kYellowColor,
             boxShadow: [
               BoxShadow(
-                color: kBrownColor,
+                color: kYellowColor,
                 blurRadius: 50,
                 spreadRadius: 20,
                 offset: Offset(5, 0),
@@ -237,10 +252,10 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
             height: 350,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                // color: kBrownColor,
+                // color: kYellowColor,
                 boxShadow: [
                   BoxShadow(
-                    color: kBrownColor.withOpacity(.4),
+                    color: kYellowColor.withOpacity(.4),
                     blurRadius: 60,
                     spreadRadius: 20,
                     offset: const Offset(5, 0),
@@ -265,8 +280,8 @@ class _TeachersListWidgetState extends State<TeachersListWidget> {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                kBrownColor.withRed(170).withOpacity(.6),
-                kBrownColor.withOpacity(0.0),
+                kYellowColor.withRed(170).withOpacity(.6),
+                kYellowColor.withOpacity(0.0),
               ],
             ),
           ),

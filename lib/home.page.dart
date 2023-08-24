@@ -1,14 +1,14 @@
-import 'package:coffee_app/config/services_locator.dart';
-import 'package:coffee_app/models/coffee_item.model.dart';
-import 'package:coffee_app/models/treat_item.model.dart';
-import 'package:coffee_app/services/navigation.service.dart';
-import 'package:coffee_app/widgets/checkout.widget.dart';
-import 'package:coffee_app/widgets/intro.widget.dart';
-import 'package:coffee_app/widgets/sweet_treats.widget.dart';
+import 'package:teachers_app/config/services_locator.dart';
+import 'package:teachers_app/models/teacher_item_model.dart';
+import 'package:teachers_app/models/treat_item.model.dart';
+import 'package:teachers_app/services/navigation.service.dart';
+import 'package:teachers_app/widgets/checkout.widget.dart';
+import 'package:teachers_app/widgets/intro.widget.dart';
+import 'package:teachers_app/widgets/sweet_treats.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-import 'coffe_details.page.dart';
+import 'teacher_details_page.dart';
 import 'widgets/teacher_list_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               icon: const Icon(
-                FeatherIcons.shoppingBag,
+                FeatherIcons.grid,
                 size: 30,
                 color: Colors.black,
               ),

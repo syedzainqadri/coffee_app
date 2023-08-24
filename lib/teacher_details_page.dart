@@ -1,11 +1,11 @@
-import 'package:coffee_app/config/services_locator.dart';
-import 'package:coffee_app/services/navigation.service.dart';
+import 'package:teachers_app/config/services_locator.dart';
+import 'package:teachers_app/services/navigation.service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'config/colors_constants.dart';
-import 'models/coffee_item.model.dart';
+import 'models/teacher_item_model.dart';
 
 class TeacherDetailsPage extends StatefulWidget {
   final TeacherItem teacher;
@@ -16,12 +16,12 @@ class TeacherDetailsPage extends StatefulWidget {
 }
 
 class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
-  late String sizeCoffee;
+  late String sizeteacher;
 
   @override
   void initState() {
     super.initState();
-    sizeCoffee = 'M';
+    sizeteacher = '1 h';
   }
 
   @override
@@ -68,7 +68,7 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                         },
                         child: Row(
                           children: [
-                            Text('Add to cart',
+                            Text('Book a session now',
                                 style: GoogleFonts.questrial(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400,
@@ -95,7 +95,7 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                   Row(
                     children: [
                       const Icon(
-                        FeatherIcons.coffee,
+                        FeatherIcons.book,
                         color: kTitleColor,
                         size: 30,
                       ),
@@ -103,11 +103,11 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                         width: 5,
                       ),
                       Text(
-                        sizeCoffee == 'M'
-                            ? "Basic"
-                            : sizeCoffee == 'L'
-                                ? "Large"
-                                : "Small",
+                        sizeteacher == '1 h'
+                            ? "1 hour / session"
+                            : sizeteacher == '2 h'
+                                ? "2 hour / session"
+                                : "30 min / session",
                         style: GoogleFonts.questrial(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
@@ -120,11 +120,11 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                     height: 20,
                   ),
                   Row(
-                    children: ['S', 'M', 'L']
-                        .map((sizeCoffe) => GestureDetector(
+                    children: ['1/2 h', '1 h', '2 h']
+                        .map((sizeSession) => GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  sizeCoffee = sizeCoffe;
+                                  sizeteacher = sizeSession;
                                 });
                               },
                               child: Container(
@@ -134,11 +134,11 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                                     horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: sizeCoffee == sizeCoffe
+                                  color: sizeteacher == sizeSession
                                       ? kTitleColor
                                       : Colors.transparent,
                                   border: Border.all(
-                                    color: sizeCoffee != sizeCoffe
+                                    color: sizeteacher != sizeSession
                                         ? kTitleColor
                                         : Colors.transparent,
                                     width: 2,
@@ -149,12 +149,12 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
                                   style: GoogleFonts.questrial(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
-                                    color: sizeCoffee != sizeCoffe
+                                    color: sizeteacher != sizeSession
                                         ? kTitleColor
                                         : Colors.white,
                                   ),
                                   child: Text(
-                                    sizeCoffe,
+                                    sizeSession,
                                   ),
                                 ),
                               ),
@@ -166,7 +166,7 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                    "${(widget.teacher.price + (sizeCoffee == "M" ? 0 : (sizeCoffee == "L" ? 1.2 : -.8))).toStringAsFixed(2)}€",
+                    "${(widget.teacher.price + (sizeteacher == "30 min" ? 0 : (sizeteacher == "60 min" ? 1.2 : -.8))).toStringAsFixed(2)}\$ / hr",
                     style: titleStyle),
               ),
               const Spacer(),
@@ -186,7 +186,7 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
               SizedBox(
                 width: size.width * 0.6,
                 child: Hero(
-                    tag: "coffee_${widget.teacher.id}_name",
+                    tag: "teacher_${widget.teacher.id}_name",
                     child: Text(
                       widget.teacher.name,
                       style: titleStyle,
@@ -205,12 +205,12 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
         child: IgnorePointer(
           ignoring: true,
           child: Hero(
-            tag: "coffee_${widget.teacher.id}",
+            tag: "teacher_${widget.teacher.id}",
             child: AnimatedScale(
               duration: const Duration(milliseconds: 400),
-              scale: sizeCoffee == 'M'
+              scale: sizeteacher == '1 h'
                   ? 1.36
-                  : sizeCoffee == 'L'
+                  : sizeteacher == '2'
                       ? 1.5
                       : 1.2,
               curve: Curves.easeOutBack,
@@ -238,8 +238,8 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
               begin: Alignment.bottomLeft,
               stops: const [0.0, .50],
               colors: [
-                kBrownColor.withOpacity(.7),
-                kBrownColor.withOpacity(0.0)
+                kYellowColor.withOpacity(.7),
+                kYellowColor.withOpacity(0.0)
               ],
             ),
           )),
@@ -253,8 +253,8 @@ class _TeacherDetailsPageState extends State<TeacherDetailsPage> {
               end: Alignment.bottomRight,
               stops: const [0.0, .4],
               colors: [
-                kBrownColor.withOpacity(.5),
-                kBrownColor.withOpacity(0.0)
+                kYellowColor.withOpacity(.5),
+                kYellowColor.withOpacity(0.0)
               ],
             ),
           )),

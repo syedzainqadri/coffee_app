@@ -1,6 +1,6 @@
-import 'package:coffee_app/config/scroll_config.dart';
-import 'package:coffee_app/models/coffee_item.model.dart';
-import 'package:coffee_app/models/treat_item.model.dart';
+import 'package:teachers_app/config/scroll_config.dart';
+import 'package:teachers_app/models/teacher_item_model.dart';
+import 'package:teachers_app/models/treat_item.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';

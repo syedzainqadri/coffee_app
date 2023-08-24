@@ -1,11 +1,8 @@
-import 'dart:math';
-
-import 'package:coffee_app/config/colors_constants.dart';
-import 'package:coffee_app/config/services_locator.dart';
-import 'package:coffee_app/models/coffee_item.model.dart';
-import 'package:coffee_app/services/navigation.service.dart';
+import 'package:teachers_app/config/colors_constants.dart';
+import 'package:teachers_app/config/services_locator.dart';
+import 'package:teachers_app/models/teacher_item_model.dart';
+import 'package:teachers_app/services/navigation.service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IntroWidget extends StatelessWidget {
@@ -25,7 +22,7 @@ class IntroWidget extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: const [0, .3, 0.4],
-            colors: [Colors.white, kBrownColor, Colors.white.withOpacity(0.8)],
+            colors: [Colors.white, kYellowColor, Colors.white.withOpacity(0.8)],
           ),
         ),
         child: Stack(children: [
@@ -57,7 +54,7 @@ class IntroWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        "Steizy",
+                        "Find your",
                         style: GoogleFonts.dancingScript(
                           fontSize: 80,
                           fontWeight: FontWeight.w100,
@@ -65,7 +62,7 @@ class IntroWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Coffee",
+                        "Teacher",
                         style: GoogleFonts.montserrat(
                           fontSize: 50,
                           fontWeight: FontWeight.w700,
@@ -75,17 +72,6 @@ class IntroWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Positioned(
-                  right: 56,
-                  top: 21,
-                  child: Transform.rotate(
-                    angle: pi / 6,
-                    child: Image.asset(
-                      'assets/images/bean.png',
-                      height: 22,
-                    ),
-                  ),
-                )
               ],
             ),
           )

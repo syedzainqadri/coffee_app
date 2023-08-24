@@ -1,4 +1,4 @@
-import 'package:coffee_app/home.page.dart';
+import 'package:teachers_app/home.page.dart';
 import 'package:flutter/material.dart';
 
 import 'config/services_locator.dart';
