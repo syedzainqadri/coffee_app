@@ -80,8 +80,8 @@ class _HomePageState extends State<HomePage> {
                       if (args.isCheckout) {
                         currentPage = CheckoutWidget(
                           teacher: TeacherItem.mockItems[args.teacher],
-                          treat: args.treat != null
-                              ? TimeSlot.mockItems[args.treat!]
+                          treat: args.time != null
+                              ? TimeSlot.mockItems[args.time!]
                               : null,
                         );
                       }

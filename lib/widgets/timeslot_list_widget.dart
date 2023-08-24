@@ -120,27 +120,6 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
             ),
           ),
         ),
-        // Align(
-        //   alignment: Alignment.bottomRight,
-        //   child: SafeArea(
-        //     child: Padding(
-        //       padding: const EdgeInsets.only(right: 20),
-        //       child: Text(
-        //         TimeSlot
-        //             .mockItems[
-        //                 _currentHeading.clamp(0, TimeSlot.mockItems.length - 1)]
-        //             .colories,
-        //         style: GoogleFonts.montserrat(
-        //           fontSize: 20,
-        //           fontWeight: FontWeight.w400,
-        //           height: 1,
-        //           color: kTitleColor.withOpacity(.5),
-        //         ),
-        //         textAlign: TextAlign.right,
-        //       ),
-        //     ),
-        //   ),
-        // ),
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -159,13 +138,13 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
                     }
                     // we need to know how much index is far from the current page to scale it
                     final double distance =
-                        (_currentPosition - index + 1).abs();
+                        (_currentPosition - index - 1).abs();
                     final isNotOnScreen = (_currentPosition - index + 1) > 0;
-                    final double scale = 1 - distance * .38;
-                    final double translateY = (1 - scale).abs() *
+                    final double scale = .4 + distance * .35;
+                    final double translateY = (.4 - scale).abs() *
                             MediaQuery.of(context).size.height /
-                            2 +
-                        25 * (distance - 1).clamp(0.0, 1);
+                            1.5 +
+                        15 * (distance - 1).clamp(1, 1);
                     return Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).size.height * .1),
@@ -199,7 +178,7 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
                 locator<NavigationService>().navigateTo(
                   NavigationArguments(
                     teacher: TeacherItem.mockItems.indexOf(widget.teacher),
-                    treat: TimeSlot.mockItems.indexOf(TimeSlot.mockItems[
+                    time: TimeSlot.mockItems.indexOf(TimeSlot.mockItems[
                         _currentHeading.clamp(
                             0, TimeSlot.mockItems.length - 1)]),
                     isCheckout: true,

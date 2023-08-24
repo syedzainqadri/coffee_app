@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class NavigationArguments {
   final int teacher;
-  final int? treat;
+  final int? time;
   final bool isSweetTreats;
   final bool isCheckout;
   NavigationArguments(
       {required this.teacher,
-      this.treat,
+      this.time,
       this.isSweetTreats = false,
       this.isCheckout = false});
 }
