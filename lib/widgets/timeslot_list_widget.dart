@@ -110,7 +110,7 @@ class TreatsListWidgetState extends State<TreatsListWidget> {
           width: size.width,
           height: size.height * 0.7,
           child: Hero(
-            tag: "coffee_${widget.teacher.id}",
+            tag: "teacher_${widget.teacher.id}",
             child: Transform.scale(
               scale: 1.36,
               child: Image.asset(
